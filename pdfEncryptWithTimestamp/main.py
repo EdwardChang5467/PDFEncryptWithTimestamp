@@ -1,4 +1,5 @@
 import encrypt
+import pdf2image
 import os
 
 encrypted_text_hashtable = {}
@@ -37,13 +38,22 @@ def update_txt(new_file_hash, new_encrypted_text):
 
 
 if __name__ == '__main__':
-	file = "./tmp/test.pdf"
+	#将pdf转换为图像再合并为pdf
+	file1 = "./tmp/test.pdf"
+	pdf2image.pdf2image(file1)
+	pdf2image.image2pdf()
+	#将pdf加密
+	file = "./output.pdf"
 	hashres = encrypt.filehash_cal(file)
 	text = encrypt.encryption("aaa")
 	file_hash, encrypted_text = read_txt()
 	update_txt(hashres, text)
 	if hashres in file_hash:
 		key = encrypted_text[file_hash.index(hashres)]
-		print("文件密码:" + key)
+	else:
+		file_hash.append(hashres)
+		encrypted_text.append(text)
+		key = text
+	print("文件密码:" + key)
 	encrypt.encryptPDF(file,key)
 

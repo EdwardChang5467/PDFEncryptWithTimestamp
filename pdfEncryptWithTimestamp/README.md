@@ -8,6 +8,8 @@
 
 ​     tmp文件夹中log.txt为日志文件，每一条记录前半部分为文件的哈希值，后半部分为生成的user_key
 
+   pdf2image.py实现将pdf转换为图片再合并为pdf，实现了无法复制pdf内容的功能
+
 
 
 
@@ -16,9 +18,15 @@
 
 python环境为3.9.12
 
+运行前需要先安装PyPDF2,PIL,fitz库
+
 ```pip install PyPDF2```
 
-```pip install hashlib```
+```pip install PIL```
+
+`pip install fitz`
+
+
 
 设置main.py文件中待加密文件file和encrypt.py文件中加密后文件保存路径与名称，之后运行main.py
 
